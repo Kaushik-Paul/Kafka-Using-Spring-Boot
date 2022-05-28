@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {
+public class LibraryEventsController {
 
     @GetMapping("/ping")
     public String test_ping() {
-        return "Hello_World";
+        return "Producer is Active !!!";
     }
 }
