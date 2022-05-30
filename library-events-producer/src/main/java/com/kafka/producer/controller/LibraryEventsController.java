@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -46,7 +47,7 @@ public class LibraryEventsController {
     }
 
     @PostMapping("/v1/libraryevent-producer")
-    public ResponseEntity<LibraryEvent> postLibraryEventProducerRecord(@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException, ExecutionException, InterruptedException {
+    public ResponseEntity<LibraryEvent> postLibraryEventProducerRecord(@RequestBody @Valid LibraryEvent libraryEvent) throws JsonProcessingException, ExecutionException, InterruptedException {
 
         // set the library event
         libraryEvent.setLibraryEventType(LibraryEventType.NEW);
