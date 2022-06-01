@@ -56,4 +56,18 @@ public class LibraryEventsController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
     }
+
+    @PutMapping("/v1/libraryevent-producer")
+    public ResponseEntity<?> putLibraryEventProducerRecord(@RequestBody @Valid LibraryEvent libraryEvent) throws JsonProcessingException, ExecutionException, InterruptedException {
+
+        if (libraryEvent.getLibraryEventId() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please enter the libraryEventId !!!");
+        }
+        // set the library event
+        libraryEvent.setLibraryEventType(LibraryEventType.UPDATE);
+        // initialize kafka producer synchronously
+        libraryEventProducer.sendLibraryEventsUsingProducerRecord(libraryEvent);
+
+        return ResponseEntity.status(HttpStatus.OK).body(libraryEvent);
+    }
 }
