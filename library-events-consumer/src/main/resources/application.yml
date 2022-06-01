@@ -1,4 +1,44 @@
 server:
   port: 8100
+spring:
+  profiles:
+    active: local
 
 ---
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeSerializer
+      group-id: my_first_group
+  config:
+    activate:
+      on-profile: local
+
+---
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeSerializer
+      group-id: my_first_group
+  config:
+    activate:
+      on-profile: dev
+
+---
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeSerializer
+      group-id: my_first_group
+  config:
+    activate:
+      on-profile: prod
