@@ -68,7 +68,7 @@ public class LibraryEventProducer {
 
         ProducerRecord<Integer, String> producerRecord = buildProducerRecord(key, value, topic);
         ListenableFuture<SendResult<Integer, String>> listenableFuture = kafkaTemplate.send(producerRecord);
-        listenableFuture.addCallback(new ListenableFutureCallback<SendResult<Integer, String>>() {
+        listenableFuture.addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(Throwable ex) {
                 handleFailure(key, value, ex);
